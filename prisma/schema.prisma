@@ -1,0 +1,35 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+    schemas   = ["auth", "public"]
+}
+
+model Nation {
+    id     Int     @id @default(autoincrement())
+    name   String  @unique
+    image  String
+    Groups String
+    Point  Groups?
+
+    @@schema("public")
+}
+
+model Groups {
+    id       Int    @id @default(autoincrement())
+    nationId String @unique
+    Nation   Nation @relation(fields: [nationId], references: [name])
+    victory  Int    @default(0)
+    tie      Int    @default(0)
+    loser    Int    @default(0)
+    GS       Int    @default(0)
+    GC       Int    @default(0)
+    pts      Int    @default(0)
+
+    @@schema("public")
+}
