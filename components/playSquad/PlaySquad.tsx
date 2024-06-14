@@ -41,7 +41,7 @@ export default function PlaySquad(props: playProps) {
 						<div
 							className="flex justify-center text-white font-bolder py-2"
 							key={_}>
-							<h4 className="bg-euroSecondary  w-48 rounded text-right p-2">
+							<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
 								{el.nationH}
 							</h4>
 							{prova ? (
@@ -53,7 +53,7 @@ export default function PlaySquad(props: playProps) {
 									{el.puntiH} - {el.puntiF}
 								</p>
 							)}
-							<h4 className="bg-euroSecondary  w-48 rounded text-left p-2">
+							<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
 								{el.nationF}
 							</h4>
 						</div>

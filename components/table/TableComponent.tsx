@@ -39,7 +39,7 @@ export default function TableComponent({ Girone, nation }: nationalProprs) {
 					{prova.map((el, _) => (
 						<TableRow key={_}>
 							<TableCell className="font-medium">{_ + 1}</TableCell>
-							<TableCell>
+							<TableCell className="capitalize">
 								{/* <Image
 									width={150}
 									height={150}

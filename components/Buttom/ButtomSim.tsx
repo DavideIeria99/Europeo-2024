@@ -7,12 +7,16 @@ export default function ButtomSim() {
 	return (
 		<>
 			{prova ? (
-				""
+				<a
+					href="/partite"
+					className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded ">
+					<button className="uppercase"> resetta</button>
+				</a>
 			) : (
 				<a
 					href="?sim=true"
-					className="bg-black text-white p-4 ">
-					<button> simula</button>
+					className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded ">
+					<button className="uppercase"> simula</button>
 				</a>
 			)}
 		</>

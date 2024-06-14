@@ -1,7 +1,5 @@
 import ButtomSim from "@/components/Buttom/ButtomSim";
 import PlaySquad from "@/components/playSquad/PlaySquad";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { useSearchParams } from "next/navigation";
 
 import React from "react";
 
@@ -396,9 +394,8 @@ export default function page() {
 		},
 	];
 
-	//@todo creare funzione random conta
 	return (
-		<main className="bg-euroPrimary/85 min-h-screen pb-2 ">
+		<main className="bg-euroPrimary/85 min-h-screen pb-2 relative ">
 			<h2 className="h-auto   p-3 text-center w-full bg-euroTerziary text-white text-8xl">
 				Giornate
 			</h2>
