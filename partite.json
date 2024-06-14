@@ -1,0 +1,388 @@
+[
+	{
+		"Giornata": 1,
+		"Gironi": [
+			{
+				"tipo": "A",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			},
+			{
+				"tipo": "B",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			},
+			{
+				"tipo": "C",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			}
+		]
+	},
+	{
+		"Giornata": 2,
+		"girone": "A",
+		"Gironi": [
+			{
+				"tipo": "A",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			},
+			{
+				"tipo": "B",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			},
+			{
+				"tipo": "C",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			}
+		]
+	},
+	{
+		"Giornata": 3,
+		"girone": "A",
+		"Gironi": [
+			{
+				"tipo": "A",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			},
+			{
+				"tipo": "B",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			},
+			{
+				"tipo": "C",
+				"partite": [
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					},
+					{
+						"nationH": "italia",
+						"puntiH": 0,
+						"nationF": "spagna",
+						"puntiF": 0
+					},
+					{
+						"nationH": "francia",
+						"puntiH": 0,
+						"nationF": "Germania",
+						"puntiF": 0
+					}
+				]
+			}
+		]
+	}
+]

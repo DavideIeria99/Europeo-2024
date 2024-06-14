@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Header() {
 	return (
-		<header className="w-full h-screen bg-euroSecondary flex bg-[url(/media/campo.png)] bg-repeat   ">
-			<section className="w-1/2 h-full flex justify-center content-center flex-col bg-euroPrimary/75 ">
+		<header className="w-full h-screen  flex bg-repeat bg-euroSecondary/80   ">
+			<section className="w-1/2 h-full flex justify-center content-center flex-col ">
 				<div className=" flex flex-col justify-center">
 					<h1 className="text-white font-bold text-8xl text-balance text-center ">
 						Simulazione Euro 2024
@@ -15,7 +15,7 @@ export default function Header() {
 					</a>
 				</div>
 			</section>
-			<section className=" w-1/2 uppercase p-2  flex justify-center flex-col bg-euroPrimary/75">
+			<section className=" w-1/2 uppercase p-2  flex justify-center flex-col ">
 				<Image
 					width={1500}
 					height={1500}
