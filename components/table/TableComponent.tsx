@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
 	Table,
 	TableCaption,
@@ -8,15 +7,10 @@ import {
 	TableBody,
 	TableCell,
 } from "../ui/table";
+import { GroupProps } from "@/app/groupStage/page";
 
-interface nationalProprs {
-	Girone: { nations: string; point: number }[];
-	nation: string;
-}
-
-export default function TableComponent({ Girone, nation }: nationalProprs) {
-	const prova = Girone.sort((a, b) => b.point - a.point);
-	console.log(prova);
+export default function TableComponent({ girone, nation }: GroupProps) {
+	const prova = girone.sort((a, b) => b.point - a.point);
 
 	return (
 		<>
@@ -24,7 +18,7 @@ export default function TableComponent({ Girone, nation }: nationalProprs) {
 				<TableCaption>Girone {nation} Europeo 2024</TableCaption>
 				<TableHeader>
 					<TableRow>
-						<TableHead className="">PS</TableHead>
+						<TableHead>PS</TableHead>
 						<TableHead>Squadra</TableHead>
 						<TableHead>PG</TableHead>
 						<TableHead>V</TableHead>
@@ -49,11 +43,11 @@ export default function TableComponent({ Girone, nation }: nationalProprs) {
 								{el.nations}
 							</TableCell>
 							<TableCell>3</TableCell>
-							<TableCell className="text-right">2</TableCell>
-							<TableCell className="text-right">1</TableCell>
-							<TableCell className="text-right">0</TableCell>
-							<TableCell className="text-right">20</TableCell>
-							<TableCell className="text-right">10</TableCell>
+							<TableCell className="text-right">{el.victory}</TableCell>
+							<TableCell className="text-right">{el.tie}</TableCell>
+							<TableCell className="text-right">{el.loser}</TableCell>
+							<TableCell className="text-right">{el.GS}</TableCell>
+							<TableCell className="text-right">{el.GC}</TableCell>
 							<TableCell className="text-right">{el.point}</TableCell>
 						</TableRow>
 					))}

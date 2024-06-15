@@ -11,11 +11,10 @@ datasource db {
 }
 
 model Nation {
-    id     Int     @id @default(autoincrement())
-    name   String  @unique
-    image  String
-    Groups String
-    Point  Groups?
+    id    Int     @id @default(autoincrement())
+    name  String  @unique
+    image String
+    Point Groups?
 
     @@schema("public")
 }
@@ -24,6 +23,7 @@ model Groups {
     id       Int    @id @default(autoincrement())
     nationId String @unique
     Nation   Nation @relation(fields: [nationId], references: [name])
+    Groups   String
     victory  Int    @default(0)
     tie      Int    @default(0)
     loser    Int    @default(0)

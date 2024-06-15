@@ -4,215 +4,239 @@ export const NationData: Partial<Nation>[] = [
     {
         name: "Germania",
         image: "/nation/Germania.png",
-        Groups: "A"
+
     },
     {
         name: "Scozia",
         image: "/nation/Scozia.png",
-        Groups: "A"
+
     },
     {
         name: "Ungheria",
         image: "/nation/Ungheria.png",
-        Groups: "A"
+
     },
     {
         name: "Svizzera",
         image: "/nation/Svizzera.png",
-        Groups: "A"
+
     },
     {
         name: "Spagna",
         image: "/nation/Spagna.png",
-        Groups: "B"
+
     },
     {
         name: "Croazia",
         image: "/nation/Croazia.png",
-        Groups: "B"
+
 
     },
     {
         name: "Italia",
         image: "/nation/Italia.png",
-        Groups: "B"
+
 
     },
     {
         name: "Albania",
         image: "/nation/Albania.png",
-        Groups: "B"
+
 
     },
     {
         name: "Slovenia",
         image: "/nation/Slovenia.png",
-        Groups: "C"
+
 
     },
     {
         name: "Danimarca",
         image: "/nation/Danimarca.png",
-        Groups: "C"
+
     },
     {
         name: "Serbia",
         image: "/nation/Serbia.png",
-        Groups: "C"
+
 
     },
     {
         name: "Inghilterra",
         image: "/nation/Inghilterra.png",
-        Groups: "C"
+
 
     },
     {
         name: "Polonia",
         image: "/nation/Polonia.png",
-        Groups: "D"
+
 
     },
     {
         name: "Olanda",
         image: "/nation/Olanda.png",
-        Groups: "D"
+
 
     },
     {
         name: "Austria",
         image: "/nation/Austria.png",
-        Groups: "D"
+
 
     },
     {
         name: "Francia",
         image: "/nation/Francia.png",
-        Groups: "D"
+
 
     },
     {
         name: "Belgio",
         image: "/nation/Belgio.png",
-        Groups: "E"
+
 
     },
     {
         name: "Slovacchia",
         image: "/nation/Slovacchia.png",
-        Groups: "E"
+
 
     },
     {
         name: "Romania",
         image: "/nation/Romania.png",
-        Groups: "E"
+
 
     },
     {
         name: "Ucraina",
         image: "/nation/Ucraina.png",
-        Groups: "E"
+
 
     },
     {
         name: "Turchia",
         image: "/nation/Turchia.png",
-        Groups: "F"
+
 
     },
     {
         name: "Georgia",
         image: "/nation/Georgia.png",
-        Groups: "F"
+
 
     },
     {
         name: "Portogallo",
         image: "/nation/Portogallo.png",
-        Groups: "F"
+
 
     },
     {
         name: "RepublicaC",
         image: "/nation/RepublicaC.png",
-        Groups: "F"
+
     },
 ]
 
 export const GroupsData: Partial<Groups>[] = [
     {
-        nationId: "Germania"
+        nationId: "Germania",
+        Groups: "A"
     },
 
     {
-        nationId: "Scozia"
+        nationId: "Scozia",
+        Groups: "A"
     },
     {
-        nationId: "Ungheria"
+        nationId: "Ungheria",
+        Groups: "A"
     },
     {
-        nationId: "Svizzera"
+        nationId: "Svizzera",
+        Groups: "A"
     },
     {
-        nationId: "Spagna"
+        nationId: "Spagna",
+        Groups: "B"
     },
     {
-        nationId: "Croazia"
+        nationId: "Croazia",
+        Groups: "B"
     },
     {
-        nationId: "Italia"
+        nationId: "Italia",
+        Groups: "B"
     },
     {
-        nationId: "Albania"
+        nationId: "Albania",
+        Groups: "B"
     },
     {
-        nationId: "Slovenia"
+        nationId: "Slovenia",
+        Groups: "C"
     },
     {
-        nationId: "Danimarca"
+        nationId: "Danimarca",
+        Groups: "C"
     },
     {
-        nationId: "Serbia"
+        nationId: "Serbia",
+        Groups: "C"
     },
     {
-        nationId: "Inghilterra"
+        nationId: "Inghilterra",
+        Groups: "C"
     },
     {
-        nationId: "Polonia"
+        nationId: "Polonia",
+        Groups: "D"
     },
     {
-        nationId: "Olanda"
+        nationId: "Olanda",
+        Groups: "D"
     },
     {
-        nationId: "Austria"
+        nationId: "Austria",
+        Groups: "D"
     },
     {
-        nationId: "Francia"
+        nationId: "Francia",
+        Groups: "D"
     },
     {
-        nationId: "Belgio"
+        nationId: "Belgio",
+        Groups: "E"
     },
     {
-        nationId: "Slovacchia"
+        nationId: "Slovacchia",
+        Groups: "E"
     },
     {
-        nationId: "Romania"
+        nationId: "Romania",
+        Groups: "E"
     },
     {
-        nationId: "Ucraina"
+        nationId: "Ucraina",
+        Groups: "E"
     },
     {
-        nationId: "Turchia"
+        nationId: "Turchia",
+        Groups: "F"
     },
     {
-        nationId: "Georgia"
+        nationId: "Georgia",
+        Groups: "F"
     },
     {
-        nationId: "Portogallo"
+        nationId: "Portogallo",
+        Groups: "F"
     },
     {
-        nationId: "RepublicaC"
+        nationId: "RepublicaC",
+        Groups: "F"
     },
 ]
 

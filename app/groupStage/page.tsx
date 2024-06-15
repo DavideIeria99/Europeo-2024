@@ -1,50 +1,73 @@
 import TableComponent from "@/components/table/TableComponent";
+import { prisma } from "@/prisma/prisma";
+import { Groups } from "@prisma/client";
 
-export default function page() {
-	const EU = [
+const GroupData = async () => {
+	return await prisma.groups.findMany();
+};
+
+export interface GroupProps {
+	girone: {
+		nations: string;
+		victory: number;
+		tie: number;
+		loser: number;
+		GS: number;
+		GC: number;
+		point: number;
+	}[];
+	nation: string;
+}
+function sortingGroup(arr: Groups[]) {
+	let groupDefinitve: GroupProps[] = [
 		{
-			girone: [
-				{
-					nations: "italy",
-					point: 3,
-				},
-				{
-					nations: "france",
-					point: 7,
-				},
-				{
-					nations: "germany",
-					point: 8,
-				},
-				{
-					nations: "Spain",
-					point: 9,
-				},
-			],
-			Nation: "A",
+			girone: [],
+			nation: "A",
 		},
 		{
-			girone: [
-				{
-					nations: "italy",
-					point: 3,
-				},
-				{
-					nations: "france",
-					point: 7,
-				},
-				{
-					nations: "germany",
-					point: 8,
-				},
-				{
-					nations: "Spain",
-					point: 9,
-				},
-			],
-			Nation: "B",
+			girone: [],
+			nation: "B",
+		},
+		{
+			girone: [],
+			nation: "C",
+		},
+		{
+			girone: [],
+			nation: "D",
+		},
+		{
+			girone: [],
+			nation: "E",
+		},
+		{
+			girone: [],
+			nation: "F",
 		},
 	];
+
+	arr.forEach((el) => {
+		groupDefinitve.filter((prova) =>
+			prova.nation == el.Groups
+				? prova.girone.push({
+						nations: el.nationId,
+						victory: el.victory,
+						tie: el.tie,
+						loser: el.loser,
+						GS: el.GS,
+						GC: el.GC,
+						point: el.pts,
+				  })
+				: ""
+		);
+	});
+	return groupDefinitve;
+}
+export default async function page() {
+	const nation: Groups[] = await GroupData();
+	const prova = sortingGroup(nation);
+	console.log(prova);
+
 	return (
 		<>
 			<main className="ì bg-euroSecondary/80 min-h-screen pb-4  w-full relative ">
@@ -52,11 +75,11 @@ export default function page() {
 					Fase a gironi
 				</h1>
 				<section className="mt-5 relative z-20 bg-white flex flex-wrap  justify-evenly gap-3 w-4/5 mx-auto p-4 rounded ">
-					{EU.map((el, _) => (
+					{prova.map((el, _) => (
 						<TableComponent
 							key={_}
-							Girone={el.girone}
-							nation={el.Nation}
+							girone={el.girone}
+							nation={el.nation}
 						/>
 					))}
 				</section>
