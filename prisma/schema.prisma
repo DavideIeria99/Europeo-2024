@@ -24,6 +24,7 @@ model Groups {
     nationId String @unique
     Nation   Nation @relation(fields: [nationId], references: [name])
     Groups   String
+    PG       Int    @default(0)
     victory  Int    @default(0)
     tie      Int    @default(0)
     loser    Int    @default(0)

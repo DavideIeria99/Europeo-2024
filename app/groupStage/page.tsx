@@ -1,23 +1,8 @@
 import TableComponent from "@/components/table/TableComponent";
-import { prisma } from "@/prisma/prisma";
+import { GroupData } from "@/lib/CallPrisma";
+import { GroupProps } from "@/lib/type";
 import { Groups } from "@prisma/client";
 
-const GroupData = async () => {
-	return await prisma.groups.findMany();
-};
-
-export interface GroupProps {
-	girone: {
-		nations: string;
-		victory: number;
-		tie: number;
-		loser: number;
-		GS: number;
-		GC: number;
-		point: number;
-	}[];
-	nation: string;
-}
 function sortingGroup(arr: Groups[]) {
 	let groupDefinitve: GroupProps[] = [
 		{
@@ -45,12 +30,12 @@ function sortingGroup(arr: Groups[]) {
 			nation: "F",
 		},
 	];
-
 	arr.forEach((el) => {
 		groupDefinitve.filter((prova) =>
 			prova.nation == el.Groups
 				? prova.girone.push({
 						nations: el.nationId,
+						PG: el.PG,
 						victory: el.victory,
 						tie: el.tie,
 						loser: el.loser,
@@ -66,7 +51,6 @@ function sortingGroup(arr: Groups[]) {
 export default async function page() {
 	const nation: Groups[] = await GroupData();
 	const prova = sortingGroup(nation);
-	console.log(prova);
 
 	return (
 		<>

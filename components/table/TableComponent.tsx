@@ -1,3 +1,4 @@
+import { GroupProps } from "@/lib/type";
 import {
 	Table,
 	TableCaption,
@@ -7,7 +8,6 @@ import {
 	TableBody,
 	TableCell,
 } from "../ui/table";
-import { GroupProps } from "@/app/groupStage/page";
 
 export default function TableComponent({ girone, nation }: GroupProps) {
 	const prova = girone.sort((a, b) => b.point - a.point);
@@ -42,7 +42,7 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 								/> */}
 								{el.nations}
 							</TableCell>
-							<TableCell>3</TableCell>
+							<TableCell>{el.PG}</TableCell>
 							<TableCell className="text-right">{el.victory}</TableCell>
 							<TableCell className="text-right">{el.tie}</TableCell>
 							<TableCell className="text-right">{el.loser}</TableCell>
