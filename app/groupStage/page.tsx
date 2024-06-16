@@ -51,6 +51,9 @@ function sortingGroup(arr: Groups[]) {
 export default async function page() {
 	const nation: Groups[] = await GroupData();
 	const prova = sortingGroup(nation);
+	const day = nation[1].PG;
+
+	console.log(nation[1].PG);
 
 	return (
 		<>
@@ -68,9 +71,14 @@ export default async function page() {
 					))}
 				</section>
 				<section className="mx-auto p-2 w-4/5 bg-white flex justify-around">
-					<a href="/partite">
-						<button className="bg-blue-500 rounded p-1 ">partite</button>
-					</a>
+					{day < 3 ? (
+						<a href={`/partite/${day + 1}`}>
+							<button className="bg-blue-500 rounded p-1 ">partite</button>
+						</a>
+					) : (
+						""
+					)}
+
 					<a href="">
 						<button className="bg-blue-500 rounded p-1 ">risultati</button>
 					</a>

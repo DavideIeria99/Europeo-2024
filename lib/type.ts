@@ -11,3 +11,16 @@ export interface GroupProps {
     }[];
     nation: string;
 }
+
+export interface playProps {
+    giornata: number;
+    Gironi: {
+        tipo: String;
+        partite: {
+            nazioneH: string;
+            puntiH: number;
+            nazioneF: string;
+            puntiF: number;
+        }[];
+    }[];
+}

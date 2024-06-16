@@ -1,20 +1,8 @@
 "use client";
 
+import { playProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
 
-interface playProps {
-	Giornata: number;
-	Gironi: {
-		tipo: string;
-		partite: {
-			nationH: string;
-			puntiH: number;
-			nationF: string;
-			puntiF: number;
-		}[];
-	}[];
-}
 export const setScores = async (point: number) => {
 	"use Server";
 	return (point += Math.floor(Math.random() * (4 - 0) + 0));
@@ -22,14 +10,11 @@ export const setScores = async (point: number) => {
 
 export default function PlaySquad(props: playProps) {
 	const prova = useSearchParams().get("sim");
-	const [sim, setSim] = useState(false);
-
-	console.log(prova);
 
 	return (
 		<section>
 			<h3 className="text-center bg-euroPrimary text-white font-bold text-2xl p-4  sticky top-0 z-20">
-				Giornata {props.Giornata}
+				Giornata {props.giornata}
 			</h3>
 			{props.Gironi.map((el, _) => (
 				<section key={_}>
@@ -42,7 +27,7 @@ export default function PlaySquad(props: playProps) {
 							className="flex justify-center text-white font-bolder py-2"
 							key={_}>
 							<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
-								{el.nationH}
+								{el.nazioneH}
 							</h4>
 							{prova ? (
 								<p className="mx-10 w-24 text-4xl text-black">
@@ -54,7 +39,7 @@ export default function PlaySquad(props: playProps) {
 								</p>
 							)}
 							<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
-								{el.nationF}
+								{el.nazioneF}
 							</h4>
 						</div>
 					))}

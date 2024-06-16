@@ -8,9 +8,9 @@ export default function ButtomSim() {
 		<>
 			{prova ? (
 				<a
-					href="/partite"
+					href="/groupStage"
 					className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded ">
-					<button className="uppercase"> resetta</button>
+					<button className="uppercase"> gironi</button>
 				</a>
 			) : (
 				<a
