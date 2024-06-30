@@ -15,7 +15,7 @@ export interface GroupProps {
 export interface playProps {
     giornata: number;
     Gironi: {
-        tipo: String;
+        tipo: string;
         partite: {
             nazioneH: string;
             puntiH: number;
@@ -23,4 +23,11 @@ export interface playProps {
             puntiF: number;
         }[];
     }[];
+}
+
+export interface nazionProps {
+    giornata: number;
+    nazioneH: string;
+    nazioneF: string;
+
 }

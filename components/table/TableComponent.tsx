@@ -31,7 +31,9 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 				</TableHeader>
 				<TableBody>
 					{prova.map((el, _) => (
-						<TableRow key={_}>
+						<TableRow
+							key={_}
+							className={_ < 2 ? "bg-red-400 hover:bg-red-300" : ""}>
 							<TableCell className="font-medium">{_ + 1}</TableCell>
 							<TableCell className="capitalize">
 								{/* <Image

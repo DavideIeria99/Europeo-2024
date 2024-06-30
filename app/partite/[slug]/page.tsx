@@ -1,9 +1,10 @@
-import ButtomSim from "@/components/Buttom/ButtomSim";
+// import ButtomSim from "@/components/Buttom/ButtomSim";
 import PlaySquad from "@/components/playSquad/PlaySquad";
 import { GroupData } from "@/lib/CallPrisma";
 import { playProps } from "@/lib/type";
 import { Gare } from "@/partite";
 import { Groups } from "@prisma/client";
+import { redirect } from "next/navigation";
 
 interface dayprops {
 	params: { slug: string };
@@ -13,11 +14,20 @@ export default async function page({ params }: dayprops) {
 	const nation: Groups[] = await GroupData();
 	const day = parseInt(params.slug);
 
+	if (day >= 4) {
+		redirect("/groupStage");
+	}
+
+	if (nation[1].PG > day) {
+		redirect("/groupStage");
+	}
+	console.log(nation[1].PG);
+
 	const DayPlay = Gare.filter((el: playProps) => el.giornata == day);
 	return (
-		<main className="bg-euroPrimary/85 min-h-screen pb-2 relative ">
+		<main className="bg-euroPrimary/85 min-h-screen pb-2 relative">
 			<h2 className="h-auto   p-3 text-center w-full bg-euroTerziary text-white text-8xl">
-				Giornate
+				Giornata {day}
 			</h2>
 			{/* section white */}
 
@@ -31,7 +41,6 @@ export default async function page({ params }: dayprops) {
 					/>
 				))}
 			</section>
-			<ButtomSim />
 		</main>
 	);
 }
