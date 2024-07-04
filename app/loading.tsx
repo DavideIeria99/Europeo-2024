@@ -13,7 +13,6 @@ export default function loading() {
 					src={"/media/euro2024.png"}
 					alt="coppa"
 				/>
-				{/* <h1 className="p-10 uppercase font-bold text-2xl ">loading...</h1> */}
 			</div>
 		</>
 	);

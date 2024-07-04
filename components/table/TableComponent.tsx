@@ -10,7 +10,16 @@ import {
 } from "../ui/table";
 
 export default function TableComponent({ girone, nation }: GroupProps) {
-	const prova = girone.sort((a, b) => b.point - a.point);
+	const prova = girone.sort((a, b) => {
+		if (b.victory == a.victory) {
+			return b.GS - a.GS;
+		}
+		if (b.point == a.point) {
+			return b.victory - a.victory;
+		}
+
+		return b.point - a.point;
+	});
 
 	return (
 		<>

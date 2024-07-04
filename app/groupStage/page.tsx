@@ -1,6 +1,7 @@
 import TableComponent from "@/components/table/TableComponent";
 import { GroupData } from "@/lib/CallPrisma";
 import { GroupProps } from "@/lib/type";
+import { load } from "@/prisma/seed";
 import { Groups } from "@prisma/client";
 
 function sortingGroup(arr: Groups[]) {
@@ -43,7 +44,7 @@ function sortingGroup(arr: Groups[]) {
 						GC: el.GC,
 						point: el.pts,
 				  })
-				: ""
+				: "",
 		);
 	});
 	return groupDefinitve;
@@ -57,7 +58,7 @@ export default async function page() {
 
 	return (
 		<>
-			<main className="ì bg-euroSecondary/80 min-h-screen pb-4  w-full relative ">
+			<main className="bg-euroSecondary/80 min-h-screen pb-4  w-full relative ">
 				<h1 className="font-bold text-8xl bg-euroTerziary text-white text-center">
 					Fase a gironi
 				</h1>
@@ -79,9 +80,15 @@ export default async function page() {
 						""
 					)}
 
-					<a href="">
+					<a href="/directStage">
 						<button className="bg-blue-500 rounded p-1 ">risultati</button>
 					</a>
+
+					{/* <button
+						onClick={load}
+						className="bg-red-500 rounded p-1 ">
+						Reset
+					</button> */}
 				</section>
 			</main>
 		</>

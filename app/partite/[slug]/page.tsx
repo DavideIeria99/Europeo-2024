@@ -26,7 +26,7 @@ export default async function page({ params }: dayprops) {
 	const DayPlay = Gare.filter((el: playProps) => el.giornata == day);
 	return (
 		<main className="bg-euroPrimary/85 min-h-screen pb-2 relative">
-			<h2 className="h-auto   p-3 text-center w-full bg-euroTerziary text-white text-8xl">
+			<h2 className="h-auto p-3 text-center w-full bg-euroTerziary text-white text-8xl">
 				Giornata {day}
 			</h2>
 			{/* section white */}

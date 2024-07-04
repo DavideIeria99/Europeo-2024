@@ -48,8 +48,12 @@ export default function TabelSquad(el: nazionProps) {
 	if (prova) {
 		useEffect(() => {
 			console.log("inizio");
-			updateData(NazionH);
-			updateData(NazionF);
+			try {
+				updateData(NazionH);
+				updateData(NazionF);
+			} catch (error) {
+				console.log(error);
+			}
 			console.log("fine");
 			setPointH(puntiH);
 			setPointF(puntiF);

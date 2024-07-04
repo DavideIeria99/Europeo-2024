@@ -1,3 +1,4 @@
+'use server'
 import { NationData, GroupsData } from "./data";
 
 const { PrismaClient } = require("@prisma/client");
@@ -6,7 +7,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 
-const load = async () => {
+export const load = async () => {
     try {
         await prisma.Groups.deleteMany();
         await prisma.Nation.deleteMany();
