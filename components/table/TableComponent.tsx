@@ -10,12 +10,12 @@ import {
 } from "../ui/table";
 
 export default function TableComponent({ girone, nation }: GroupProps) {
-	const prova = girone.sort((a, b) => {
-		if (b.victory == a.victory) {
-			return b.GS - a.GS;
+	const nazions = girone.sort((a, b) => {
+		if (b.DR == a.DR) {
+			return b.victory - a.victory;
 		}
 		if (b.point == a.point) {
-			return b.victory - a.victory;
+			return b.DR - a.DR;
 		}
 
 		return b.point - a.point;
@@ -35,14 +35,19 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 						<TableHead>S</TableHead>
 						<TableHead className="text-right">GF</TableHead>
 						<TableHead className="text-right">GS</TableHead>
+						<TableHead className="text-right">DR</TableHead>
 						<TableHead className="text-right">Pt</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{prova.map((el, _) => (
+					{nazions.map((el, _) => (
 						<TableRow
 							key={_}
-							className={_ < 2 ? "bg-red-400 hover:bg-red-300" : ""}>
+							className={
+								_ < 2
+									? "bg-euroSecondary hover:bg-euroPrimary hover:text-white"
+									: ""
+							}>
 							<TableCell className="font-medium">{_ + 1}</TableCell>
 							<TableCell className="capitalize">
 								{/* <Image
@@ -59,6 +64,7 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 							<TableCell className="text-right">{el.loser}</TableCell>
 							<TableCell className="text-right">{el.GS}</TableCell>
 							<TableCell className="text-right">{el.GC}</TableCell>
+							<TableCell className="text-right">{el.DR}</TableCell>
 							<TableCell className="text-right">{el.point}</TableCell>
 						</TableRow>
 					))}

@@ -1,7 +1,6 @@
 import TableComponent from "@/components/table/TableComponent";
 import { GroupData } from "@/lib/CallPrisma";
 import { GroupProps } from "@/lib/type";
-import { load } from "@/prisma/seed";
 import { Groups } from "@prisma/client";
 
 function sortingGroup(arr: Groups[]) {
@@ -41,6 +40,7 @@ function sortingGroup(arr: Groups[]) {
 						tie: el.tie,
 						loser: el.loser,
 						GS: el.GS,
+						DR: el.DR,
 						GC: el.GC,
 						point: el.pts,
 				  })
@@ -62,7 +62,7 @@ export default async function page() {
 				<h1 className="font-bold text-8xl bg-euroTerziary text-white text-center">
 					Fase a gironi
 				</h1>
-				<section className="mt-5 relative z-20 bg-white flex flex-wrap  justify-evenly gap-3 w-4/5 mx-auto p-4 rounded ">
+				<section className="mt-5 relative z-20 bg-white flex flex-wrap  justify-evenly gap-3 w-4/5 mx-auto p-4 rounded-t ">
 					{prova.map((el, _) => (
 						<TableComponent
 							key={_}
@@ -71,24 +71,20 @@ export default async function page() {
 						/>
 					))}
 				</section>
-				<section className="mx-auto p-2 w-4/5 bg-white flex justify-around">
+				<section className="mx-auto p-2 w-4/5 bg-white rounded-b flex justify-center">
 					{day < 3 ? (
 						<a href={`/partite/${day + 1}`}>
-							<button className="bg-blue-500 rounded p-1 ">partite</button>
+							<button className="bg-euroPrimary hover:bg-euroSecondary hover:text-white  rounded p-1 ">
+								partite
+							</button>
 						</a>
 					) : (
-						""
+						<a href="/directStage">
+							<button className="bg-euroPrimary hover:bg-euroSecondary hover:text-white  rounded p-1 ">
+								risultati
+							</button>
+						</a>
 					)}
-
-					<a href="/directStage">
-						<button className="bg-blue-500 rounded p-1 ">risultati</button>
-					</a>
-
-					{/* <button
-						onClick={load}
-						className="bg-red-500 rounded p-1 ">
-						Reset
-					</button> */}
 				</section>
 			</main>
 		</>

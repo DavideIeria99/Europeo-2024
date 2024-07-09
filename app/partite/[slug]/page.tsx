@@ -1,16 +1,12 @@
 // import ButtomSim from "@/components/Buttom/ButtomSim";
 import PlaySquad from "@/components/playSquad/PlaySquad";
 import { GroupData } from "@/lib/CallPrisma";
-import { playProps } from "@/lib/type";
+import { paramsprops, playProps } from "@/lib/type";
 import { Gare } from "@/partite";
 import { Groups } from "@prisma/client";
 import { redirect } from "next/navigation";
 
-interface dayprops {
-	params: { slug: string };
-}
-
-export default async function page({ params }: dayprops) {
+export default async function page({ params }: paramsprops) {
 	const nation: Groups[] = await GroupData();
 	const day = parseInt(params.slug);
 

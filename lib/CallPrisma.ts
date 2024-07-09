@@ -1,6 +1,7 @@
 'use server'
 import { prisma } from "@/prisma/prisma";
 import { Groups } from "@prisma/client";
+import { redirect } from "next/navigation";
 
 
 
@@ -25,7 +26,26 @@ export const GroupFind = async (State: string) => {
     })
 }
 
+export async function DataDirect(arr: Groups[]) {
+    console.log('ci sono');
 
+
+    arr.map(async (el) => {
+        await prisma.directState.createMany({
+            data: {
+                nationId: el.nationId,
+                OneEight: true
+            },
+            skipDuplicates: true,
+        })
+    })
+
+
+
+    redirect('directStage/OneEight');
+
+
+}
 
 
 
@@ -46,6 +66,7 @@ export const updateData = async (nazion: nazionUpdate) => {
             victory: { increment: nazion.V },
             tie: { increment: nazion.P },
             loser: { increment: nazion.S },
+            DR: { increment: nazion.GF - nazion.GS },
             GS: { increment: nazion.GF },
             GC: { increment: nazion.GS },
         },

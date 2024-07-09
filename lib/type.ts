@@ -6,6 +6,7 @@ export interface GroupProps {
         tie: number;
         loser: number;
         GS: number;
+        DR: number;
         GC: number;
         point: number;
     }[];
@@ -30,4 +31,8 @@ export interface nazionProps {
     nazioneH: string;
     nazioneF: string;
 
+}
+
+export interface paramsprops {
+    params: { slug: string };
 }
