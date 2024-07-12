@@ -34,5 +34,13 @@ export interface nazionProps {
 }
 
 export interface paramsprops {
-    params: { slug: string };
+    params: {
+        slug: string
+    };
+}
+
+export interface DirectNazionProps {
+    nazioneH: string;
+    nazioneF: string;
+    params: string
 }

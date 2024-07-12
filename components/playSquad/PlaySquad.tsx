@@ -8,7 +8,7 @@ import TabelSquad from "./TabelSquad";
 export default function PlaySquad(props: playProps) {
 	return (
 		<section>
-			<ButtomSim />
+			<ButtomSim href={"/groupStage"} />
 
 			{props.Gironi.map((nazion, _) => (
 				<section

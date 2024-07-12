@@ -7,7 +7,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 
-export const load = async () => {
+const load = async () => {
     try {
         await prisma.Groups.deleteMany();
         await prisma.Nation.deleteMany();

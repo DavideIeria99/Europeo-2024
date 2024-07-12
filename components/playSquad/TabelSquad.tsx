@@ -5,6 +5,7 @@ import { nazionUpdate, updateData } from "@/lib/CallPrisma";
 import { nazionProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+
 export function setScores(
 	nazion: string,
 	pointH: number,
@@ -36,6 +37,7 @@ export function setScores(
 	console.log("risultato");
 	return nazionState;
 }
+
 export default function TabelSquad(el: nazionProps) {
 	const prova = useSearchParams().get("sim");
 	let [pointH, setPointH] = useState(0);
@@ -45,18 +47,20 @@ export default function TabelSquad(el: nazionProps) {
 	const NazionH = setScores(el.nazioneH, puntiH, puntiF, el.giornata);
 	const NazionF = setScores(el.nazioneF, puntiF, puntiH, el.giornata);
 
+	async function data() {
+		await (updateData(NazionH), updateData(NazionF));
+	}
 	if (prova) {
 		useEffect(() => {
 			console.log("inizio");
 			try {
-				updateData(NazionH);
-				updateData(NazionF);
+				data();
+				setPointH(puntiH);
+				setPointF(puntiF);
 			} catch (error) {
 				console.log(error);
 			}
 			console.log("fine");
-			setPointH(puntiH);
-			setPointF(puntiF);
 		}, [prova]);
 	}
 	return (

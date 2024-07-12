@@ -18,6 +18,15 @@ export interface nazionUpdate {
 export const GroupData = async () => {
     return await prisma.groups.findMany();
 };
+export const DeleteDirectData = async () => {
+    await prisma.directState.deleteMany();
+    await prisma.$queryRaw`ALTER SEQUENCE "DirectState_id_seq" RESTART WITH 1`;
+
+    console.log("reset completato");
+
+    redirect('/directStage')
+
+};
 export const GroupFind = async (State: string) => {
     return await prisma.groups.findFirst({
         where: {
@@ -73,4 +82,45 @@ export const updateData = async (nazion: nazionUpdate) => {
     });
 
     return console.log("nazione: ", nazion.nazion);
+}
+
+export const updateDataDirect = async (nazion: string, params: string) => {
+    switch (params) {
+        case "Final":
+            return await prisma.directState.update({
+                where: {
+                    nationId: nazion,
+                },
+                data: {
+                    Winner: true,
+                },
+            });
+        case "Semifinal":
+            return await prisma.directState.update({
+                where: {
+                    nationId: nazion,
+                },
+                data: {
+                    Final: true,
+                },
+            });
+        case "OneFour":
+            return await prisma.directState.update({
+                where: {
+                    nationId: nazion,
+                },
+                data: {
+                    SemiFinal: true,
+                },
+            });
+        case "OneEight":
+            return await prisma.directState.update({
+                where: {
+                    nationId: nazion,
+                },
+                data: {
+                    OneFour: true,
+                },
+            });
+    }
 }
