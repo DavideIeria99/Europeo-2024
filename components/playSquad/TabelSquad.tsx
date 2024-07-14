@@ -73,7 +73,11 @@ export default function TabelSquad(el: nazionProps) {
 					{el.nazioneH}
 				</h4>
 				{load ? (
-					<p className="mx-10 w-24  text-black">simulazione..</p>
+					<p className="mx-10 w-24  ">
+						<svg
+							className="animate-spin h-10 w-10 mx-3 border-t-4 border-b-4  border-euroPrimary rounded-full "
+							viewBox="0 0 24 24"></svg>
+					</p>
 				) : (
 					<p className="mx-10 w-24 text-4xl text-black">
 						<span>{pointH}</span> - <span>{pointF}</span>
