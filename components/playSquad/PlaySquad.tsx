@@ -4,6 +4,7 @@ import { playProps } from "@/lib/type";
 
 import ButtomSim from "../Buttom/ButtomSim";
 import TabelSquad from "./TabelSquad";
+import { Suspense } from "react";
 
 export default function PlaySquad(props: playProps) {
 	return (
@@ -18,12 +19,13 @@ export default function PlaySquad(props: playProps) {
 						Girone {nazion.tipo}
 					</h3>
 					{nazion.partite.map((el, _) => (
-						<TabelSquad
-							key={_}
-							giornata={props.giornata}
-							nazioneH={el.nazioneH}
-							nazioneF={el.nazioneF}
-						/>
+						<Suspense key={_}>
+							<TabelSquad
+								giornata={props.giornata}
+								nazioneH={el.nazioneH}
+								nazioneF={el.nazioneF}
+							/>
+						</Suspense>
 					))}
 				</section>
 			))}

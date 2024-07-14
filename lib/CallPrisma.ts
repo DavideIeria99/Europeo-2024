@@ -149,9 +149,11 @@ export async function create() {
 
     await prisma.nation.createMany({
         data: NationData,
+        skipDuplicates: true,
     });
     await prisma.groups.createMany({
         data: GroupsData,
+        skipDuplicates: true,
     });
 
     console.log("createData");

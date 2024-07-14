@@ -36,25 +36,45 @@ export default function TabelSquad({
 	const prova = useSearchParams().get("sim");
 	let [pointH, setPointH] = useState(0);
 	let [pointF, setPointF] = useState(0);
+	let [load, setload] = useState(true);
+	let puntiH = Math.floor(Math.random() * (4 - 0) + 0);
+	let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
 
 	async function data() {
-		await setScoresDirect(nazioneH, pointH, pointF, nazioneF, params);
+		await setScoresDirect(nazioneH, puntiH, puntiF, nazioneF, params);
+		setPointH(puntiH);
+		setPointF(puntiF);
+		setload(false);
 	}
 	if (prova) {
 		useEffect(() => {
 			console.log("inizio");
 			try {
-				let puntiH = Math.floor(Math.random() * (4 - 0) + 0);
-				let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
-				setPointH(puntiH);
-				setPointF(puntiF);
 				data();
 			} catch (error) {
 				console.log(error);
 			}
 			console.log("fine");
 		}, []);
+		return (
+			<section className="flex justify-center text-white font-bolder py-2">
+				<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
+					{nazioneH}
+				</h4>
+				{load ? (
+					<p className="mx-10 w-24  text-black">simulazione..</p>
+				) : (
+					<p className="mx-10 w-24 text-4xl text-black">
+						<span>{pointH}</span> - <span>{pointF}</span>
+					</p>
+				)}
+				<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
+					{nazioneF}
+				</h4>
+			</section>
+		);
 	}
+
 	return (
 		<div className="flex justify-center text-white font-bolder py-2">
 			<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
