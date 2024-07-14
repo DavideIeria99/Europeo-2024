@@ -1,17 +1,17 @@
 'use server'
 import { NationData, GroupsData } from "./data";
 
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 
 
 const prisma = new PrismaClient();
 
 
-export const load = async () => {
+export const loadProva = async () => {
     try {
-        await prisma.Groups.deleteMany();
-        await prisma.DirectState.deleteMany();
-        await prisma.Nation.deleteMany();
+        await prisma.groups.deleteMany();
+        await prisma.directState.deleteMany();
+        await prisma.nation.deleteMany();
         console.log("Deleted records in product table");
 
         await prisma.$queryRaw`ALTER SEQUENCE "Groups_id_seq" RESTART WITH 1`;
@@ -20,10 +20,12 @@ export const load = async () => {
 
         console.log("reset product auto increment to 1");
 
-        await prisma.Nation.createMany({
+        await prisma.nation.createMany({
+
             data: NationData,
+
         });
-        await prisma.Groups.createMany({
+        await prisma.groups.createMany({
             data: GroupsData,
         });
 
@@ -36,4 +38,4 @@ export const load = async () => {
     }
 }
 
-load()
+loadProva()

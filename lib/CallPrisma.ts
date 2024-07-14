@@ -1,9 +1,8 @@
 'use server'
+import { GroupsData, NationData } from "@/prisma/data";
 import { prisma } from "@/prisma/prisma";
 import { Groups } from "@prisma/client";
 import { redirect } from "next/navigation";
-
-
 
 export interface nazionUpdate {
     PG: number,
@@ -15,9 +14,12 @@ export interface nazionUpdate {
     P: number,
     S: number,
 }
+//prendo i dati
 export const GroupData = async () => {
     return await prisma.groups.findMany();
 };
+
+//cancello i dati db DirectState
 export const DeleteDirectData = async () => {
     await prisma.directState.deleteMany();
     await prisma.$queryRaw`ALTER SEQUENCE "DirectState_id_seq" RESTART WITH 1`;
@@ -27,6 +29,8 @@ export const DeleteDirectData = async () => {
     redirect('/directStage')
 
 };
+
+//cerco una nazione
 export const GroupFind = async (State: string) => {
     return await prisma.groups.findFirst({
         where: {
@@ -35,6 +39,7 @@ export const GroupFind = async (State: string) => {
     })
 }
 
+//aggiungo i dati db directState
 export async function DataDirect(arr: Groups[]) {
     console.log('ci sono');
 
@@ -42,7 +47,7 @@ export async function DataDirect(arr: Groups[]) {
     arr.map(async (el) => {
         await prisma.directState.createMany({
             data: {
-                nationId: el.nationId,
+                nation: el.nationId,
                 OneEight: true
             },
             skipDuplicates: true,
@@ -57,7 +62,7 @@ export async function DataDirect(arr: Groups[]) {
 }
 
 
-
+//punti fase a gironi
 export const updateData = async (nazion: nazionUpdate) => {
     const State: Groups | null = await GroupFind(nazion.nazion);
 
@@ -84,12 +89,13 @@ export const updateData = async (nazion: nazionUpdate) => {
     return console.log("nazione: ", nazion.nazion);
 }
 
+//aggiorno i directState
 export const updateDataDirect = async (nazion: string, params: string) => {
     switch (params) {
         case "Final":
             return await prisma.directState.update({
                 where: {
-                    nationId: nazion,
+                    nation: nazion,
                 },
                 data: {
                     Winner: true,
@@ -98,7 +104,7 @@ export const updateDataDirect = async (nazion: string, params: string) => {
         case "Semifinal":
             return await prisma.directState.update({
                 where: {
-                    nationId: nazion,
+                    nation: nazion,
                 },
                 data: {
                     Final: true,
@@ -107,7 +113,7 @@ export const updateDataDirect = async (nazion: string, params: string) => {
         case "OneFour":
             return await prisma.directState.update({
                 where: {
-                    nationId: nazion,
+                    nation: nazion,
                 },
                 data: {
                     SemiFinal: true,
@@ -116,11 +122,38 @@ export const updateDataDirect = async (nazion: string, params: string) => {
         case "OneEight":
             return await prisma.directState.update({
                 where: {
-                    nationId: nazion,
+                    nation: nazion,
                 },
                 data: {
                     OneFour: true,
                 },
             });
     }
+}
+
+export async function reset() {
+
+    await prisma.groups.deleteMany();
+    await prisma.directState.deleteMany();
+    await prisma.nation.deleteMany();
+    console.log("Deleted records in product table");
+
+    await prisma.$queryRaw`ALTER SEQUENCE "Groups_id_seq" RESTART WITH 1`;
+    await prisma.$queryRaw`ALTER SEQUENCE "DirectState_id_seq" RESTART WITH 1`;
+    await prisma.$queryRaw`ALTER SEQUENCE "Nation_id_seq" RESTART WITH 1`;
+
+    console.log("reset product auto increment to 1");
+    redirect("/");
+}
+export async function create() {
+
+    await prisma.nation.createMany({
+        data: NationData,
+    });
+    await prisma.groups.createMany({
+        data: GroupsData,
+    });
+
+    console.log("createData");
+    redirect("/groupStage");
 }

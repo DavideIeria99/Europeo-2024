@@ -52,9 +52,8 @@ function sortingGroup(arr: Groups[]) {
 export default async function page() {
 	const nation: Groups[] = await GroupData();
 	const prova = sortingGroup(nation);
-	const day = nation[1].PG;
 
-	console.log(nation[1].PG);
+	const day = 0 | nation[1].PG;
 
 	return (
 		<>

@@ -14,28 +14,18 @@ export async function setScoresDirect(
 	params: string,
 ) {
 	console.log("calcolo");
-	//nazioni
-	let nazionStateH = {
-		nazion: nazionH,
-		point: pointH,
-	};
-	let nazionStateF = {
-		nazion: nazionF,
-		point: pointF,
-	};
-
 	//if di controllo
 
-	if (nazionStateH.point > nazionStateF.point) {
+	if (pointH > pointF) {
 		await updateDataDirect(nazionH, params);
-	} else if (nazionStateH.point < nazionStateF.point) {
+	} else if (pointH < pointF) {
 		await updateDataDirect(nazionF, params);
-	} else if (nazionStateH.point == nazionStateF.point) {
+	} else {
 		await updateDataDirect(nazionH, params);
 	}
 
 	console.log("risultato");
-	return `<spam>${nazionStateH.point}</spam> -<spam> ${nazionStateF.point} </spam>`;
+	return `<spam>${pointH}}</spam> -<spam> ${pointF} </spam>`;
 }
 
 export default function TabelSquad({

@@ -1,3 +1,6 @@
+"use client";
+
+import { create } from "@/lib/CallPrisma";
 import Image from "next/image";
 
 export default function Header() {
@@ -8,11 +11,22 @@ export default function Header() {
 					<h1 className="text-white font-bold text-8xl text-balance text-center ">
 						Simulazione Euro 2024
 					</h1>
-					<a
+
+					<button
+						onClick={() => create()}
+						className=" text-center  text-white bg-euroTerziary hover:bg-euroSecondary p-2 w-auto mt-2 mx-auto rounded">
+						Gioca
+					</button>
+
+					{/* <a
 						className="bg-euroTerziary hover:bg-euroSecondary p-2 w-auto mt-2 mx-auto rounded"
 						href="/groupStage">
-						<button className=" text-center  text-white">Gioca</button>
-					</a>
+						<button
+							onClick={() => create()}
+							className=" text-center  text-white">
+							Gioca
+						</button>
+					</a> */}
 				</div>
 			</section>
 			<section className=" w-1/2 uppercase p-2  flex justify-center flex-col ">

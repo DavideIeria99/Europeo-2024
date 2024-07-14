@@ -50,11 +50,14 @@ export default function TabelSquad(el: nazionProps) {
 	async function data() {
 		await (updateData(NazionH), updateData(NazionF));
 	}
+
+	useEffect(() => {
+		data();
+	}, []);
 	if (prova) {
 		useEffect(() => {
 			console.log("inizio");
 			try {
-				data();
 				setPointH(puntiH);
 				setPointF(puntiF);
 			} catch (error) {

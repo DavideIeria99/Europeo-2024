@@ -11,11 +11,10 @@ datasource db {
 }
 
 model Nation {
-    id     Int          @id @default(autoincrement())
-    name   String       @unique
-    image  String
-    Point  Groups?
-    Direct DirectState?
+    id    Int     @id @default(autoincrement())
+    name  String  @unique
+    image String
+    Point Groups?
 
     @@schema("public")
 }
@@ -39,8 +38,7 @@ model Groups {
 
 model DirectState {
     id        Int     @id @default(autoincrement())
-    nationId  String  @unique
-    Nation    Nation  @relation(fields: [nationId], references: [name])
+    nation    String  @unique
     OneEight  Boolean @default(false)
     OneFour   Boolean @default(false)
     SemiFinal Boolean @default(false)
