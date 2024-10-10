@@ -23,10 +23,10 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 
 	return (
 		<>
-			<Table>
+			<Table className="md:w-full w-[550px]">
 				<TableCaption>Girone {nation} Europeo 2024</TableCaption>
 				<TableHeader>
-					<TableRow>
+					<TableRow className="bg-slate-200 ">
 						<TableHead>PS</TableHead>
 						<TableHead>Squadra</TableHead>
 						<TableHead>PG</TableHead>
@@ -44,12 +44,12 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 						<TableRow
 							key={_}
 							className={
-								_ < 2
+								el.PG == 3 && _ < 2
 									? "bg-euroSecondary hover:bg-euroPrimary hover:text-white"
 									: ""
 							}>
 							<TableCell className="font-medium">{_ + 1}</TableCell>
-							<TableCell className="capitalize">
+							<TableCell className="capitalize sm:w-50 bg-red-600 ">
 								{/* <Image
 									width={150}
 									height={150}

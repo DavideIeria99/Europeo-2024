@@ -20,12 +20,11 @@ async function sortingGroup(arr: DirectState[] | undefined) {
 	}
 
 	console.log("lunghezza", arr);
+	if (arr.length === 1) {
+		groupDefinitve.push({ nazion: arr[0].nation });
+	}
 	if (arr.length > 1) {
 		for (let i = 0; i < arr.length; i += 2) {
-			if (arr.length === 1) {
-				return groupDefinitve.push({ nazion: arr[i].nation });
-			}
-
 			groupDefinitve.push({
 				nazionH: arr[i].nation,
 				nazionF: arr[i + 1].nation,

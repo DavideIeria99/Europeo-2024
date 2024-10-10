@@ -6,13 +6,14 @@ const Table = React.forwardRef<
 	HTMLTableElement,
 	React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-	<div className="relative w-auto border-2 rounded border-blue-500">
-		<table
-			ref={ref}
-			className={cn("w-full caption-top text-sm ", className)}
-			{...props}
-		/>
-	</div>
+	<table
+		ref={ref}
+		className={cn(
+			" caption-top text-sm relative border-2 rounded border-blue-500",
+			className,
+		)}
+		{...props}
+	/>
 ));
 Table.displayName = "Table";
 
@@ -48,7 +49,7 @@ const TableFooter = React.forwardRef<
 		ref={ref}
 		className={cn(
 			"border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-			className
+			className,
 		)}
 		{...props}
 	/>
@@ -63,7 +64,7 @@ const TableRow = React.forwardRef<
 		ref={ref}
 		className={cn(
 			"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-			className
+			className,
 		)}
 		{...props}
 	/>
@@ -78,7 +79,7 @@ const TableHead = React.forwardRef<
 		ref={ref}
 		className={cn(
 			"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
-			className
+			className,
 		)}
 		{...props}
 	/>
@@ -104,8 +105,8 @@ const TableCaption = React.forwardRef<
 	<caption
 		ref={ref}
 		className={cn(
-			" text-sm text-white w-full   p-1  bg-gradient-to-b from-blue-500 to-euroSecondary",
-			className
+			" text-sm text-white  bg-gradient-to-b from-blue-500 to-euroSecondary",
+			className,
 		)}
 		{...props}
 	/>

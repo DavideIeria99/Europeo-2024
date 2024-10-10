@@ -1,8 +1,7 @@
-// import ButtomSim from "@/components/Buttom/ButtomSim";
 import PlaySquad from "@/components/playSquad/PlaySquad";
 import { GroupData } from "@/lib/CallPrisma";
 import { paramsprops, playProps } from "@/lib/type";
-import { Gare } from "@/partite";
+import { Gare } from "@/PlayDays";
 import { Groups } from "@prisma/client";
 import { redirect } from "next/navigation";
 
@@ -17,7 +16,6 @@ export default async function page({ params }: paramsprops) {
 	if (nation[1].PG > day) {
 		redirect("/groupStage");
 	}
-	console.log(nation[1].PG);
 
 	const DayPlay = Gare.filter((el: playProps) => el.giornata == day);
 	return (

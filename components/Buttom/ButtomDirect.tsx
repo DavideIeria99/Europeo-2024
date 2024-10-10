@@ -15,11 +15,11 @@ export default function ButtomDirect({ arr }: buttonProps) {
 				className="text-center bg-euroPrimary hover:bg-euroSecondary hover:text-white">
 				diretta
 			</button>
-			<button
+			{/* <button
 				onClick={() => DeleteDirectData()}
 				className="text-center bg-euroPrimary hover:bg-euroSecondary hover:text-white">
 				reset
-			</button>
+			</button> */}
 		</>
 	);
 }
