@@ -41,9 +41,9 @@ export default function TabelSquad({
 	let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
 
 	async function data() {
-		await setScoresDirect(nazioneH, puntiH, puntiF, nazioneF, params);
 		setPointH(puntiH);
 		setPointF(puntiF);
+		await setScoresDirect(nazioneH, puntiH, puntiF, nazioneF, params);
 		setload(false);
 	}
 	if (prova) {

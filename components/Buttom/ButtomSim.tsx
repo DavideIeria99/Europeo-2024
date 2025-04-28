@@ -9,7 +9,7 @@ interface buttomProps {
 }
 
 export default function ButtomSim({ href, home }: buttomProps) {
-	const prova = useSearchParams().get("sim");
+	const sim = useSearchParams().get("sim");
 
 	if (home) {
 		return (
@@ -23,7 +23,7 @@ export default function ButtomSim({ href, home }: buttomProps) {
 
 	return (
 		<>
-			{prova && href ? (
+			{sim && href ? (
 				<a
 					href={`${href}`}
 					className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded ">

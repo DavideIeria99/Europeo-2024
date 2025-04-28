@@ -23,7 +23,7 @@ export default async function page() {
 						</div>
 					))}
 
-				<ButtomDirect arr={prova} />
+				{prova.length == 16 ? <ButtomDirect arr={prova} /> : ""}
 			</section>
 		</main>
 	);

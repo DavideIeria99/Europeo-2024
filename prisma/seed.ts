@@ -6,6 +6,18 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const preparedGroups = GroupsData.map(g => ({
+    nationId: g.nationId!,
+    Groups: g.Groups!,
+    PG: g.PG ?? 0,
+    victory: g.victory ?? 0,
+    tie: g.tie ?? 0,
+    loser: g.loser ?? 0,
+    GS: g.GS ?? 0,
+    GC: g.GC ?? 0,
+    DR: g.DR ?? 0,
+    pts: g.pts ?? 0,
+}));
 
 export const load = async () => {
     try {
@@ -13,10 +25,13 @@ export const load = async () => {
         await prisma.directState.deleteMany();
         await prisma.nation.deleteMany();
         console.log("Deleted records in product table");
+        const tables = ['groups', 'direct_state', 'nation'];
 
-        await prisma.$queryRaw`ALTER SEQUENCE "Groups_id_seq" RESTART WITH 1`;
-        await prisma.$queryRaw`ALTER SEQUENCE "DirectState_id_seq" RESTART WITH 1`;
-        await prisma.$queryRaw`ALTER SEQUENCE "Nation_id_seq" RESTART WITH 1`;
+        for (const table of tables) {
+            await prisma.$executeRawUnsafe(`ALTER TABLE \`${table}\` AUTO_INCREMENT = 1`);
+        }
+
+
 
         console.log("reset product auto increment to 1");
 
@@ -24,7 +39,7 @@ export const load = async () => {
             data: NationData,
         });
         await prisma.groups.createMany({
-            data: GroupsData,
+            data: preparedGroups,
         });
 
         console.log("Added product data");

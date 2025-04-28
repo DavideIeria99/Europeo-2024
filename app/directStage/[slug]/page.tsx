@@ -19,7 +19,7 @@ async function sortingGroup(arr: DirectState[] | undefined) {
 		};
 	}
 
-	console.log("lunghezza", arr);
+	// console.log("lunghezza", arr);
 	if (arr.length === 1) {
 		groupDefinitve.push({ nazion: arr[0].nation });
 	}
