@@ -1,7 +1,6 @@
 "use client";
 import { DataDirect, DeleteDirectData } from "@/lib/CallPrisma";
-import { GroupProps, nazionData } from "@/lib/type";
-import { Groups } from "@prisma/client";
+import { nazionData } from "@/lib/type";
 import React from "react";
 
 export default function ButtomDirect({ nations }: { nations: nazionData[] }) {

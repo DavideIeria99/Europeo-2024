@@ -23,10 +23,8 @@ export const GroupData = async () => {
 //cancello i dati db DirectState
 export const DeleteDirectData = async () => {
     await prisma.directState.deleteMany();
-    await prisma.$queryRaw`ALTER SEQUENCE "DirectState_id_seq" RESTART WITH 1`;
-
+    await prisma.$executeRawUnsafe(`ALTER TABLE \`'direct_state'\` AUTO_INCREMENT = 1`);
     console.log("reset completato");
-
     redirect('/directStage')
 
 };
@@ -86,8 +84,6 @@ export const updateData = async (nazion: nazionUpdate) => {
             GC: { increment: nazion.GS },
         },
     });
-
-    return console.log("nazione: ", nazion.nazion);
 }
 
 //aggiorno i directState

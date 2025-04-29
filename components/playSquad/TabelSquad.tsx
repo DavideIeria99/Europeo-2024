@@ -7,14 +7,12 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "../ui/loading";
 
-export function setScores(
+function setScores(
 	nazion: string,
 	pointH: number,
 	pointF: number,
 	Giornata: number,
 ) {
-	console.log("nazionale:", nazion);
-
 	let nazionState: nazionUpdate = {
 		PG: Giornata,
 		nazion: nazion,
@@ -35,37 +33,33 @@ export function setScores(
 		nazionState.punteggio += 1;
 		nazionState.P = 1;
 	}
-	console.log("risultato");
 	return nazionState;
 }
 
 export default function TabelSquad(el: nazionProps) {
-	const prova = useSearchParams().get("sim");
+	const Sim = useSearchParams().get("sim");
 	let [pointH, setPointH] = useState(0);
 	let [pointF, setPointF] = useState(0);
 	let [load, setload] = useState(true);
-	let puntiH = Math.floor(Math.random() * (4 - 0) + 0);
-	let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
-	const NazionH = setScores(el.nazioneH, puntiH, puntiF, el.giornata);
-	const NazionF = setScores(el.nazioneF, puntiF, puntiH, el.giornata);
 
 	async function data() {
+		let puntiH = Math.floor(Math.random() * (4 - 0) + 0);
+		let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
+		const NazionH = setScores(el.nazioneH, puntiH, puntiF, el.giornata);
+		const NazionF = setScores(el.nazioneF, puntiF, puntiH, el.giornata);
 		setPointH(puntiH);
 		setPointF(puntiF);
 		await (updateData(NazionH), updateData(NazionF));
-		setload(false);
 	}
 
-	if (prova) {
+	if (Sim) {
 		useEffect(() => {
-			console.log("inizio");
 			try {
 				data();
+				setload(false);
 			} catch (error) {
 				console.log(error);
 			}
-
-			console.log("fine");
 		}, []);
 
 		return (
@@ -94,7 +88,7 @@ export default function TabelSquad(el: nazionProps) {
 				{el.nazioneH}
 			</h4>
 			<p className="mx-10 w-24 text-4xl text-black">
-				<span>{pointH}</span> - <span>{pointF}</span>
+				<span>0</span> - <span>0</span>
 			</p>
 
 			<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">

@@ -24,7 +24,6 @@ export async function setScoresDirect(
 		await updateDataDirect(nazionH, params);
 	}
 
-	console.log("risultato");
 	return `<spam>${pointH}}</spam> -<spam> ${pointF} </spam>`;
 }
 
