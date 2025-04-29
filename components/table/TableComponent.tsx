@@ -8,18 +8,10 @@ import {
 	TableBody,
 	TableCell,
 } from "../ui/table";
+import { order } from "@/lib/utils";
 
 export default function TableComponent({ girone, nation }: GroupProps) {
-	const nazions = girone.sort((a, b) => {
-		if (b.DR == a.DR) {
-			return b.victory - a.victory;
-		}
-		if (b.point == a.point) {
-			return b.DR - a.DR;
-		}
-
-		return b.point - a.point;
-	});
+	const nazions = girone.sort((a, b) => order(a, b));
 
 	return (
 		<>
@@ -65,7 +57,7 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 							<TableCell className="text-right">{el.GS}</TableCell>
 							<TableCell className="text-right">{el.GC}</TableCell>
 							<TableCell className="text-right">{el.DR}</TableCell>
-							<TableCell className="text-right">{el.point}</TableCell>
+							<TableCell className="text-right">{el.pts}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>

@@ -5,6 +5,7 @@ import { nazionUpdate, updateData } from "@/lib/CallPrisma";
 import { nazionProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loading from "../ui/loading";
 
 export function setScores(
 	nazion: string,
@@ -49,9 +50,9 @@ export default function TabelSquad(el: nazionProps) {
 	const NazionF = setScores(el.nazioneF, puntiF, puntiH, el.giornata);
 
 	async function data() {
-		await (updateData(NazionH), updateData(NazionF));
 		setPointH(puntiH);
 		setPointF(puntiF);
+		await (updateData(NazionH), updateData(NazionF));
 		setload(false);
 	}
 
@@ -73,11 +74,7 @@ export default function TabelSquad(el: nazionProps) {
 					{el.nazioneH}
 				</h4>
 				{load ? (
-					<p className="mx-10 w-24  ">
-						<svg
-							className="animate-spin h-10 w-10 mx-3 border-t-4 border-b-4  border-euroPrimary rounded-full "
-							viewBox="0 0 24 24"></svg>
-					</p>
+					<Loading />
 				) : (
 					<p className="mx-10 w-24 text-4xl text-black">
 						<span>{pointH}</span> - <span>{pointF}</span>

@@ -7,16 +7,17 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const preparedGroups = GroupsData.map(g => ({
-    nationId: g.nationId!,
+    nationName: g.nationName!,
     Groups: g.Groups!,
     PG: g.PG ?? 0,
+    pts: g.pts ?? 0,
     victory: g.victory ?? 0,
     tie: g.tie ?? 0,
     loser: g.loser ?? 0,
     GS: g.GS ?? 0,
     GC: g.GC ?? 0,
     DR: g.DR ?? 0,
-    pts: g.pts ?? 0,
+
 }));
 
 export const load = async () => {

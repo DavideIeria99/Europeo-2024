@@ -1,54 +1,8 @@
 import TableComponent from "@/components/table/TableComponent";
 import { GroupData } from "@/lib/CallPrisma";
-import { GroupProps } from "@/lib/type";
+import { sortingGroup } from "@/lib/utils";
 import { Groups } from "@prisma/client";
 
-function sortingGroup(arr: Groups[]) {
-	let gironi: GroupProps[] = [
-		{
-			girone: [],
-			nation: "A",
-		},
-		{
-			girone: [],
-			nation: "B",
-		},
-		{
-			girone: [],
-			nation: "C",
-		},
-		{
-			girone: [],
-			nation: "D",
-		},
-		{
-			girone: [],
-			nation: "E",
-		},
-		{
-			girone: [],
-			nation: "F",
-		},
-	];
-	arr.forEach((el) => {
-		gironi.filter((group) =>
-			group.nation == el.Groups
-				? group.girone.push({
-						nations: el.nationId,
-						PG: el.PG,
-						victory: el.victory,
-						tie: el.tie,
-						loser: el.loser,
-						GS: el.GS,
-						DR: el.DR,
-						GC: el.GC,
-						point: el.pts,
-				  })
-				: "",
-		);
-	});
-	return gironi;
-}
 export default async function page() {
 	const nation: Groups[] = await GroupData();
 	const groups = sortingGroup(nation);

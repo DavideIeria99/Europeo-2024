@@ -1,11 +1,11 @@
 import ButtomDirect from "@/components/Buttom/ButtomDirect";
 import { GroupData } from "@/lib/CallPrisma";
-import { order } from "@/lib/utils";
+import { orderDirect } from "@/lib/utils";
 import { Groups } from "@prisma/client";
 
 export default async function page() {
-	const nation: Groups[] = await GroupData();
-	const prova = nation.sort((a, b) => order(a, b)).slice(0, 16);
+	const nations: Groups[] = await GroupData();
+	const prova = orderDirect(nations);
 
 	return (
 		<main className="w-full min-h-screen bg-euroPrimary/80 pb-2">
@@ -18,12 +18,12 @@ export default async function page() {
 						<div
 							className="p-2 rounded w-auto bg-euroSecondary text-white"
 							key={_}>
-							<h3>nazione: {el.nationId}</h3>
+							<h3>nazione: {el.nations}</h3>
 							<p>punti: {el.pts}</p>
 						</div>
 					))}
 
-				{prova.length == 16 ? <ButtomDirect arr={prova} /> : ""}
+				{prova.length == 16 ? <ButtomDirect nations={prova} /> : ""}
 			</section>
 		</main>
 	);

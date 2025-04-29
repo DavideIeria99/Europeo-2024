@@ -125,100 +125,100 @@ export const NationData: Nation[] = [
 
 export const GroupsData: Partial<Groups>[] = [
     {
-        nationId: "Germania",
+        nationName: "Germania",
         Groups: "A"
     },
 
     {
-        nationId: "Scozia",
+        nationName: "Scozia",
         Groups: "A"
     },
     {
-        nationId: "Ungheria",
+        nationName: "Ungheria",
         Groups: "A"
     },
     {
-        nationId: "Svizzera",
+        nationName: "Svizzera",
         Groups: "A"
     },
     {
-        nationId: "Spagna",
+        nationName: "Spagna",
         Groups: "B"
     },
     {
-        nationId: "Croazia",
+        nationName: "Croazia",
         Groups: "B"
     },
     {
-        nationId: "Italia",
+        nationName: "Italia",
         Groups: "B"
     },
     {
-        nationId: "Albania",
+        nationName: "Albania",
         Groups: "B"
     },
     {
-        nationId: "Slovenia",
+        nationName: "Slovenia",
         Groups: "C"
     },
     {
-        nationId: "Danimarca",
+        nationName: "Danimarca",
         Groups: "C"
     },
     {
-        nationId: "Serbia",
+        nationName: "Serbia",
         Groups: "C"
     },
     {
-        nationId: "Inghilterra",
+        nationName: "Inghilterra",
         Groups: "C"
     },
     {
-        nationId: "Polonia",
+        nationName: "Polonia",
         Groups: "D"
     },
     {
-        nationId: "Olanda",
+        nationName: "Olanda",
         Groups: "D"
     },
     {
-        nationId: "Austria",
+        nationName: "Austria",
         Groups: "D"
     },
     {
-        nationId: "Francia",
+        nationName: "Francia",
         Groups: "D"
     },
     {
-        nationId: "Belgio",
+        nationName: "Belgio",
         Groups: "E"
     },
     {
-        nationId: "Slovacchia",
+        nationName: "Slovacchia",
         Groups: "E"
     },
     {
-        nationId: "Romania",
+        nationName: "Romania",
         Groups: "E"
     },
     {
-        nationId: "Ucraina",
+        nationName: "Ucraina",
         Groups: "E"
     },
     {
-        nationId: "Turchia",
+        nationName: "Turchia",
         Groups: "F"
     },
     {
-        nationId: "Georgia",
+        nationName: "Georgia",
         Groups: "F"
     },
     {
-        nationId: "Portogallo",
+        nationName: "Portogallo",
         Groups: "F"
     },
     {
-        nationId: "RepublicaC",
+        nationName: "RepublicaC",
         Groups: "F"
     },
 ]

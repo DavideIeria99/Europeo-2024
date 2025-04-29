@@ -1,17 +1,14 @@
 "use client";
 import { DataDirect, DeleteDirectData } from "@/lib/CallPrisma";
+import { GroupProps, nazionData } from "@/lib/type";
 import { Groups } from "@prisma/client";
 import React from "react";
 
-interface buttonProps {
-	arr: Groups[];
-}
-
-export default function ButtomDirect({ arr }: buttonProps) {
+export default function ButtomDirect({ nations }: { nations: nazionData[] }) {
 	return (
 		<>
 			<button
-				onClick={() => DataDirect(arr)}
+				onClick={() => DataDirect(nations)}
 				className="text-center bg-euroPrimary hover:bg-euroSecondary hover:text-white">
 				diretta
 			</button>

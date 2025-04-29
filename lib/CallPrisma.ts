@@ -3,6 +3,7 @@ import { GroupsData, NationData } from "@/prisma/data";
 import { prisma } from "@/prisma/prisma";
 import { Groups } from "@prisma/client";
 import { redirect } from "next/navigation";
+import { nazionData } from "./type";
 
 export interface nazionUpdate {
     PG: number,
@@ -34,20 +35,20 @@ export const DeleteDirectData = async () => {
 export const GroupFind = async (State: string) => {
     return await prisma.groups.findFirst({
         where: {
-            nationId: State
+            nationName: State
         }
     })
 }
 
 //aggiungo i dati db directState
-export async function DataDirect(arr: Groups[]) {
+export async function DataDirect(arr: nazionData[]) {
     console.log('ci sono');
 
 
     arr.map(async (el) => {
         await prisma.directState.createMany({
             data: {
-                nation: el.nationId,
+                nation: el.nations,
                 OneEight: true
             },
             skipDuplicates: true,
@@ -72,7 +73,7 @@ export const updateData = async (nazion: nazionUpdate) => {
 
     await prisma.groups.update({
         where: {
-            nationId: nazion.nazion,
+            nationName: nazion.nazion,
         },
         data: {
             PG: nazion.PG,
@@ -90,12 +91,12 @@ export const updateData = async (nazion: nazionUpdate) => {
 }
 
 //aggiorno i directState
-export const updateDataDirect = async (nazion: string, params: string) => {
+export const updateDataDirect = async (nation: string, params: string) => {
     switch (params) {
         case "Final":
             return await prisma.directState.update({
                 where: {
-                    nation: nazion,
+                    nation
                 },
                 data: {
                     Winner: true,
@@ -104,7 +105,7 @@ export const updateDataDirect = async (nazion: string, params: string) => {
         case "Semifinal":
             return await prisma.directState.update({
                 where: {
-                    nation: nazion,
+                    nation
                 },
                 data: {
                     Final: true,
@@ -113,7 +114,7 @@ export const updateDataDirect = async (nazion: string, params: string) => {
         case "OneFour":
             return await prisma.directState.update({
                 where: {
-                    nation: nazion,
+                    nation
                 },
                 data: {
                     SemiFinal: true,
@@ -122,7 +123,7 @@ export const updateDataDirect = async (nazion: string, params: string) => {
         case "OneEight":
             return await prisma.directState.update({
                 where: {
-                    nation: nazion,
+                    nation
                 },
                 data: {
                     OneFour: true,
@@ -147,7 +148,7 @@ export async function reset() {
 }
 export async function create() {
     const preparedGroups = GroupsData.map(g => ({
-        nationId: g.nationId!,
+        nationName: g.nationName!,
         Groups: g.Groups!,
         PG: g.PG ?? 0,
         victory: g.victory ?? 0,
