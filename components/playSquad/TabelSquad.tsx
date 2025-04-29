@@ -41,10 +41,10 @@ export default function TabelSquad(el: nazionProps) {
 	let [pointH, setPointH] = useState(0);
 	let [pointF, setPointF] = useState(0);
 	let [load, setload] = useState(true);
+	const puntiH = Math.floor(Math.random() * (4 - 0) + 0);
+	const puntiF = Math.floor(Math.random() * (4 - 0) + 0);
 
 	async function data() {
-		let puntiH = Math.floor(Math.random() * (4 - 0) + 0);
-		let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
 		const NazionH = setScores(el.nazioneH, puntiH, puntiF, el.giornata);
 		const NazionF = setScores(el.nazioneF, puntiF, puntiH, el.giornata);
 		setPointH(puntiH);
