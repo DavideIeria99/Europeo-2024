@@ -32,7 +32,7 @@ export default async function page() {
 						</a>
 					) : (
 						<a href="/directStage">
-							<button className="bg-euroPrimary hover:bg-euroSecondary hover:text-white  rounded p-1 ">
+							<button className="bg-euroPrimary hover:bg-euroSecondary text-white  rounded p-1 ">
 								risultati
 							</button>
 						</a>

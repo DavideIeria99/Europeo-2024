@@ -9,6 +9,7 @@ import {
 	TableCell,
 } from "../ui/table";
 import { order } from "@/lib/utils";
+import Image from "next/image";
 
 export default function TableComponent({ girone, nation }: GroupProps) {
 	const nazions = girone.sort((a, b) => order(a, b));
@@ -37,17 +38,18 @@ export default function TableComponent({ girone, nation }: GroupProps) {
 							key={_}
 							className={
 								el.PG == 3 && _ < 2
-									? "bg-euroSecondary hover:bg-euroPrimary hover:text-white"
+									? "bg-euroSecondary hover:bg-euroPrimary text-white"
 									: ""
 							}>
 							<TableCell className="font-medium">{_ + 1}</TableCell>
-							<TableCell className="capitalize sm:w-50 bg-red-600 ">
-								{/* <Image
-									width={150}
-									height={150}
-									src={"/media/Italia.png"}
-									alt={"Italia"}
-								/> */}
+							<TableCell className="capitalize sm:w-50 flex gap-x-1 items-center  ">
+								<Image
+									width={10}
+									height={10}
+									src={`/nation/${el.nations}.png`}
+									className="object-cover size-5 rounded-full"
+									alt={el.nations}
+								/>
 								{el.nations}
 							</TableCell>
 							<TableCell>{el.PG}</TableCell>

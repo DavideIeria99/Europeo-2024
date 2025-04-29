@@ -14,7 +14,7 @@ export default function Header() {
 
 					<button
 						onClick={() => create()}
-						className=" text-center  text-white bg-euroTerziary hover:bg-euroSecondary p-2 w-auto mt-2 mx-auto rounded">
+						className="active:border-black border-2 border-transparent  text-center  text-white bg-euroTerziary hover:bg-euroSecondary p-2 w-auto mt-2 mx-auto rounded">
 						Gioca
 					</button>
 
