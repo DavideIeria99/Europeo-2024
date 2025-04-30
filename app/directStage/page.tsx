@@ -1,11 +1,11 @@
 import ButtomDirect from "@/components/Buttom/ButtomDirect";
 import { GroupData } from "@/lib/CallPrisma";
-import { orderDirect } from "@/lib/utils";
+import { order, orderDirect } from "@/lib/utils";
 import { Groups } from "@prisma/client";
 
 export default async function page() {
 	const nations: Groups[] = await GroupData();
-	const prova = orderDirect(nations);
+	const prova = orderDirect(nations).sort((a, b) => order(a, b));
 
 	return (
 		<main className="w-full min-h-screen bg-euroPrimary/80 pb-2">

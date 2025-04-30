@@ -14,7 +14,7 @@ export default async function page() {
 				<h1 className="font-bold text-8xl bg-euroTerziary text-white text-center">
 					Fase a gironi
 				</h1>
-				<section className="mt-5 relative overflow-x-scroll z-20 bg-white grid grid-cols-1 lg:grid-cols-2  md:gap-4 w-[90%] md:p-2 mx-auto  rounded-t ">
+				<section className="mt-5 relative overflow-x-scroll md:overflow-x-hidden z-20 bg-white grid grid-cols-1 lg:grid-cols-2  md:gap-4 w-[90%] md:p-2 mx-auto  rounded-t ">
 					{groups.map((el, _) => (
 						<TableComponent
 							key={_}

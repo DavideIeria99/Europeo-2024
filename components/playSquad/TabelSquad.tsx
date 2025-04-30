@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import { nazionUpdate, updateData } from "@/lib/CallPrisma";
-import { nazionProps } from "@/lib/type";
+import { updateData } from "@/lib/CallPrisma";
+import { nazionData, nazionProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Loading from "../ui/loading";
+import FightNation from "../ui/fightNation";
 
 function setScores(
 	nazion: string,
@@ -13,49 +13,47 @@ function setScores(
 	pointF: number,
 	Giornata: number,
 ) {
-	let nazionState: nazionUpdate = {
+	let nazionState: nazionData = {
 		PG: Giornata,
-		nazion: nazion,
-		punteggio: 0,
-		GF: pointH,
-		GS: pointF,
-		V: 0,
-		P: 0,
-		S: 0,
+		DR: pointH - pointF,
+		nations: nazion,
+		pts: 0,
+		GS: pointH,
+		GC: pointF,
+		victory: 0,
+		tie: 0,
+		loser: 0,
 	};
 
 	if (pointH > pointF) {
-		nazionState.punteggio += 3;
-		nazionState.V = 1;
+		nazionState.pts += 3;
+		nazionState.victory = 1;
 	} else if (pointH < pointF) {
-		nazionState.S = 1;
+		nazionState.loser = 1;
 	} else if (pointH == pointF) {
-		nazionState.punteggio += 1;
-		nazionState.P = 1;
+		nazionState.pts += 1;
+		nazionState.tie = 1;
 	}
 	return nazionState;
 }
 
 export default function TabelSquad(el: nazionProps) {
 	const Sim = useSearchParams().get("sim");
-	let [pointH, setPointH] = useState(0);
-	let [pointF, setPointF] = useState(0);
+	let [pointH] = useState(Math.floor(Math.random() * (4 - 0) + 0));
+	let [pointF] = useState(Math.floor(Math.random() * (4 - 0) + 0));
 	let [load, setload] = useState(true);
-	const puntiH = Math.floor(Math.random() * (4 - 0) + 0);
-	const puntiF = Math.floor(Math.random() * (4 - 0) + 0);
 
-	async function data() {
-		const NazionH = setScores(el.nazioneH, puntiH, puntiF, el.giornata);
-		const NazionF = setScores(el.nazioneF, puntiF, puntiH, el.giornata);
-		setPointH(puntiH);
-		setPointF(puntiF);
+	async function data(pH: number, pF: number) {
+		const NazionH = setScores(el.nazioneH, pH, pF, el.giornata);
+		const NazionF = setScores(el.nazioneF, pF, pH, el.giornata);
+
 		await (updateData(NazionH), updateData(NazionF));
 	}
 
 	if (Sim) {
 		useEffect(() => {
 			try {
-				data();
+				data(pointH, pointF);
 				setload(false);
 			} catch (error) {
 				console.log(error);
@@ -63,37 +61,23 @@ export default function TabelSquad(el: nazionProps) {
 		}, []);
 
 		return (
-			<section className="flex justify-center text-white font-bolder py-2">
-				<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
-					{el.nazioneH}
-				</h4>
-				{load ? (
-					<Loading />
-				) : (
-					<p className="mx-10 w-24 text-4xl text-black">
-						<span>{pointH}</span> - <span>{pointF}</span>
-					</p>
-				)}
-				<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
-					{el.nazioneF}
-				</h4>
-			</section>
+			<FightNation
+				nazioneH={el.nazioneH}
+				nazioneF={el.nazioneF}
+				pointH={pointH}
+				pointF={pointF}
+				load={load}
+			/>
 		);
 	}
 
 	//in entrata
 	return (
-		<div className="flex justify-center text-white font-bolder py-2">
-			<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
-				{el.nazioneH}
-			</h4>
-			<p className="mx-10 w-24 text-4xl text-black">
-				<span>0</span> - <span>0</span>
-			</p>
-
-			<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
-				{el.nazioneF}
-			</h4>
-		</div>
+		<FightNation
+			nazioneH={el.nazioneH}
+			nazioneF={el.nazioneF}
+			pointH={0}
+			pointF={0}
+		/>
 	);
 }

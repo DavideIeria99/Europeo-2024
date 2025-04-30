@@ -5,8 +5,9 @@ import { updateDataDirect } from "@/lib/CallPrisma";
 import { DirectNazionProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import FightNation from "../ui/fightNation";
 
-export async function setScoresDirect(
+async function setScoresDirect(
 	nazionH: string,
 	pointH: number,
 	pointF: number,
@@ -32,64 +33,42 @@ export default function TabelSquad({
 	nazioneF,
 	params,
 }: DirectNazionProps) {
-	const prova = useSearchParams().get("sim");
-	let [pointH, setPointH] = useState(0);
-	let [pointF, setPointF] = useState(0);
+	const Sim = useSearchParams().get("sim");
+	let [pointH] = useState(Math.floor(Math.random() * (4 - 0) + 0));
+	let [pointF] = useState(Math.floor(Math.random() * (4 - 0) + 0));
 	let [load, setload] = useState(true);
-	let puntiH = Math.floor(Math.random() * (4 - 0) + 0);
-	let puntiF = Math.floor(Math.random() * (4 - 0) + 0);
 
 	async function data() {
-		setPointH(puntiH);
-		setPointF(puntiF);
-		await setScoresDirect(nazioneH, puntiH, puntiF, nazioneF, params);
-		setload(false);
+		await setScoresDirect(nazioneH, pointH, pointF, nazioneF, params);
 	}
-	if (prova) {
+	if (Sim) {
 		useEffect(() => {
 			console.log("inizio");
 			try {
 				data();
+				setload(false);
 			} catch (error) {
 				console.log(error);
 			}
 			console.log("fine");
 		}, []);
 		return (
-			<section className="flex justify-center text-white font-bolder py-2">
-				<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
-					{nazioneH}
-				</h4>
-				{load ? (
-					<p className="mx-10 w-24  ">
-						<svg
-							className="animate-spin h-10 w-10 mx-3 border-t-4 border-b-4  border-euroPrimary rounded-full "
-							viewBox="0 0 24 24"></svg>
-					</p>
-				) : (
-					<p className="mx-10 w-24 text-4xl text-black">
-						<span>{pointH}</span> - <span>{pointF}</span>
-					</p>
-				)}
-				<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
-					{nazioneF}
-				</h4>
-			</section>
+			<FightNation
+				nazioneH={nazioneH}
+				nazioneF={nazioneF}
+				pointH={pointH}
+				pointF={pointF}
+				load={load}
+			/>
 		);
 	}
 
 	return (
-		<div className="flex justify-center text-white font-bolder py-2">
-			<h4 className="bg-euroSecondary capitalize  w-48 rounded text-right p-2">
-				{nazioneH}
-			</h4>
-			<p className="mx-10 w-24 text-4xl text-black">
-				<span>{pointH}</span> - <span>{pointF}</span>
-			</p>
-
-			<h4 className="bg-euroSecondary capitalize  w-48 rounded text-left p-2">
-				{nazioneF}
-			</h4>
-		</div>
+		<FightNation
+			nazioneH={nazioneH}
+			nazioneF={nazioneF}
+			pointH={0}
+			pointF={0}
+		/>
 	);
 }

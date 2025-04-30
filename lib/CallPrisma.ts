@@ -5,16 +5,7 @@ import { Groups } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { nazionData } from "./type";
 
-export interface nazionUpdate {
-    PG: number,
-    nazion: string,
-    punteggio: number,
-    GF: number,
-    GS: number,
-    V: number,
-    P: number,
-    S: number,
-}
+
 //prendo i dati
 export const GroupData = async () => {
     return await prisma.groups.findMany();
@@ -53,17 +44,13 @@ export async function DataDirect(arr: nazionData[]) {
         })
     })
 
-
-
     redirect('directStage/OneEight');
-
-
 }
 
 
 //punti fase a gironi
-export const updateData = async (nazion: nazionUpdate) => {
-    const State: Groups | null = await GroupFind(nazion.nazion);
+export const updateData = async (nazion: nazionData) => {
+    const State: Groups | null = await GroupFind(nazion.nations);
 
     if (State?.PG == nazion.PG) {
         return;
@@ -71,17 +58,17 @@ export const updateData = async (nazion: nazionUpdate) => {
 
     await prisma.groups.update({
         where: {
-            nationName: nazion.nazion,
+            nationName: nazion.nations,
         },
         data: {
             PG: nazion.PG,
-            pts: { increment: nazion.punteggio },
-            victory: { increment: nazion.V },
-            tie: { increment: nazion.P },
-            loser: { increment: nazion.S },
-            DR: { increment: nazion.GF - nazion.GS },
-            GS: { increment: nazion.GF },
-            GC: { increment: nazion.GS },
+            pts: { increment: nazion.pts },
+            victory: { increment: nazion.victory },
+            tie: { increment: nazion.tie },
+            loser: { increment: nazion.loser },
+            DR: { increment: nazion.DR },
+            GS: { increment: nazion.GS },
+            GC: { increment: nazion.GC },
         },
     });
 }
