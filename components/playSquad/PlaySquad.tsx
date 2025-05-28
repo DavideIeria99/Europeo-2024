@@ -19,13 +19,12 @@ export default function PlaySquad(props: playProps) {
 						Girone {nazion.tipo}
 					</h3>
 					{nazion.partite.map((el, _) => (
-						<Suspense key={_}>
-							<TabelSquad
-								giornata={props.giornata}
-								nazioneH={el.nazioneH}
-								nazioneF={el.nazioneF}
-							/>
-						</Suspense>
+						<TabelSquad
+							key={_}
+							giornata={props.giornata}
+							nazioneH={el.nazioneH}
+							nazioneF={el.nazioneF}
+						/>
 					))}
 				</section>
 			))}

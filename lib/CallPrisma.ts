@@ -35,12 +35,11 @@ export async function DataDirect(arr: nazionData[]) {
 
 
     arr.map(async (el) => {
-        await prisma.directState.createMany({
+        await prisma.directState.create({
             data: {
                 nation: el.nations,
                 OneEight: true
             },
-            skipDuplicates: true,
         })
     })
 
