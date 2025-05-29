@@ -4,12 +4,21 @@ import { playProps } from "@/lib/type";
 
 import ButtomSim from "../Buttom/ButtomSim";
 import TabelSquad from "./TabelSquad";
-import { Suspense } from "react";
+import { usePlayContext } from "@/lib/context/playGirons/plays";
+import { updateData } from "@/lib/CallPrisma";
+import { useEffect } from "react";
 
 export default function PlaySquad(props: playProps) {
+	const { machts } = usePlayContext();
+	useEffect(() => {
+		if (machts.length === 48) {
+			updateData(machts.slice(0, 24));
+		}
+		console.log("PlaySquad machts:", machts.length);
+	}, [machts]);
 	return (
 		<section>
-			<ButtomSim href={"/groupStage"} />
+			<ButtomSim href="/groupStage" />
 
 			{props.Gironi.map((nazion, _) => (
 				<section

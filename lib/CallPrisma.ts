@@ -48,28 +48,31 @@ export async function DataDirect(arr: nazionData[]) {
 
 
 //punti fase a gironi
-export const updateData = async (nazion: nazionData) => {
-    const State: Groups | null = await GroupFind(nazion.nations);
-
-    if (State?.PG == nazion.PG) {
+export const updateData = async (nations: nazionData[]) => {
+    if (nations.length === 0) {
         return;
     }
 
-    await prisma.groups.update({
-        where: {
-            nationName: nazion.nations,
-        },
-        data: {
-            PG: nazion.PG,
-            pts: { increment: nazion.pts },
-            victory: { increment: nazion.victory },
-            tie: { increment: nazion.tie },
-            loser: { increment: nazion.loser },
-            DR: { increment: nazion.DR },
-            GS: { increment: nazion.GS },
-            GC: { increment: nazion.GC },
-        },
-    });
+    nations.forEach(async (nazion) => {
+        await prisma.groups.update({
+            where: {
+                nationName: nazion.nations,
+            },
+            data: {
+                PG: nazion.PG,
+                pts: { increment: nazion.pts },
+                victory: { increment: nazion.victory },
+                tie: { increment: nazion.tie },
+                loser: { increment: nazion.loser },
+                DR: { increment: nazion.DR },
+                GS: { increment: nazion.GS },
+                GC: { increment: nazion.GC },
+            },
+        });
+
+    })
+
+
 }
 
 //aggiorno i directState

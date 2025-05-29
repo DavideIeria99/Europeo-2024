@@ -10,12 +10,15 @@ interface buttomProps {
 
 export default function ButtomSim({ href, home }: buttomProps) {
 	const sim = useSearchParams().get("sim");
+	const classButton =
+		"bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded uppercase";
 
 	if (home) {
 		return (
 			<button
+				type="button"
 				onClick={() => reset()}
-				className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded uppercase">
+				className={classButton}>
 				Home
 			</button>
 		);
@@ -23,17 +26,17 @@ export default function ButtomSim({ href, home }: buttomProps) {
 
 	return (
 		<>
-			{sim && href ? (
+			{sim ? (
 				<a
-					href={`${href}`}
-					className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded ">
-					<button className="uppercase"> avanti</button>
+					href={href}
+					className={classButton}>
+					avanti
 				</a>
 			) : (
 				<a
 					href="?sim=true"
-					className="bg-euroSecondary hover:bg-euroPrimary text-white p-4 absolute top-32 left-2 rounded ">
-					<button className="uppercase">simula</button>
+					className={classButton}>
+					simula
 				</a>
 			)}
 		</>

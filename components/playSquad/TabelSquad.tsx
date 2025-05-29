@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import { updateData } from "@/lib/CallPrisma";
 import { nazionData, nazionProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import FightNation from "../ui/fightNation";
+import { usePlayContext } from "@/lib/context/playGirons/plays";
 
 function setScores(
 	nazion: string,
@@ -42,12 +42,14 @@ export default function TabelSquad(el: nazionProps) {
 	let [pointH] = useState(Math.floor(Math.random() * (4 - 0) + 0));
 	let [pointF] = useState(Math.floor(Math.random() * (4 - 0) + 0));
 	let [load, setload] = useState(true);
+	const { addMach } = usePlayContext();
 
 	async function data(pH: number, pF: number) {
 		const NazionH = setScores(el.nazioneH, pH, pF, el.giornata);
 		const NazionF = setScores(el.nazioneF, pF, pH, el.giornata);
 
-		await (updateData(NazionH), updateData(NazionF));
+		addMach(NazionH);
+		addMach(NazionF);
 	}
 
 	if (Sim) {
