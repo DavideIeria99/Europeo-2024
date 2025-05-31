@@ -1,38 +1,35 @@
 import ButtomSim from "@/components/Buttom/ButtomSim";
-import TabelDirect from "@/components/playSquad/TabelDirect";
+import DirectSquad from "@/components/directSquad/DirectSquad";
+import DirectProvider from "@/lib/context/playGirons/direct-provider";
 import { paramsprops } from "@/lib/type";
 import { prisma } from "@/prisma/prisma";
 import { DirectState } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
+
+export type SortingDirectState = {
+	nationH: string;
+	nationF: string;
+};
 //creazione gruppi
 async function sortingGroup(arr: DirectState[] | undefined) {
-	if (arr == undefined) {
-		return;
+	if (!arr || arr.length === 0) {
+		return "Nessun dato disponibile";
 	}
-	let groupDefinitve = [];
-	if (arr.length == 1) {
-		return {
-			name: arr[0].nation,
-		};
-	}
+	let groupDefinitve: SortingDirectState[] = [];
+	let winner: string = "";
 
 	if (arr.length === 1) {
-		groupDefinitve.push({ nazion: arr[0].nation });
+		return (winner = arr[0].nation);
 	}
 	if (arr.length > 1) {
 		for (let i = 0; i < arr.length; i += 2) {
 			groupDefinitve.push({
-				nazionH: arr[i].nation,
-				nazionF: arr[i + 1].nation,
-				pointH: 0,
-				pointF: 0,
+				nationH: arr[i].nation,
+				nationF: arr[i + 1].nation,
 			});
 		}
 	}
-
-	// console.log("nazione", groupDefinitve);
-
 	return groupDefinitve;
 }
 //funzione chiamata
@@ -72,77 +69,46 @@ const dataDirect = async (params: string) => {
 };
 
 export default async function page({ params }: paramsprops) {
-	const dataNation: DirectState[] | any = await dataDirect(params.slug).then(
-		(data) => sortingGroup(data),
-	);
-	let direction: string = params.slug;
-
-	switch (params.slug) {
-		case "OneEight":
-			direction = "OneFour";
-			break;
-		case "OneFour":
-			direction = "Semifinal";
-			break;
-		case "Semifinal":
-			direction = "Final";
-			break;
-		case "Final":
-			direction = "Winner";
-			break;
-	}
+	const dataNation: DirectState[] | undefined = await dataDirect(params.slug);
+	const Group: SortingDirectState[] | string = await sortingGroup(dataNation);
 
 	return (
-		<main className="min-h-screen w-full bg-euroPrimary/80 relative">
-			<h2 className="h-auto p-3 text-center w-full bg-euroTerziary text-white text-8xl">
-				{params.slug}
-			</h2>
-			{params.slug == "Winner" ? (
-				//*in caso di Vittoria
-				<>
-					<ButtomSim home={true} />
-					{/* section white */}
+		<DirectProvider>
+			<main className="min-h-screen w-full bg-euroPrimary/80 relative">
+				<h2 className="h-auto p-3 text-center w-full bg-euroTerziary text-white text-8xl">
+					{params.slug}
+				</h2>
+				{params.slug == "Winner" ? (
+					//*in caso di Vittoria
+					<>
+						<ButtomSim home={true} />
+						{/* section white */}
 
-					<section className="bg-euroTerziary text-white mx-auto w-4/5  h-auto my-3 rounded py-4 bg-no-repeat bg-center bg-cover bg-[url(/media/luci.png)] ">
-						<Image
-							className="h-64 w-64 mx-auto p-10 bg-euroPrimary/20  "
-							width={200}
-							height={200}
-							src={"/media/euro2024.png"}
-							alt="coppa"
+						<section className="bg-euroTerziary text-white mx-auto w-4/5  h-auto my-3 rounded py-4 bg-no-repeat bg-center bg-cover bg-[url(/media/luci.png)] ">
+							<Image
+								className="h-64 w-64 mx-auto p-10 bg-euroPrimary/20  "
+								width={200}
+								height={200}
+								src={"/media/euro2024.png"}
+								alt="coppa"
+							/>
+
+							<div className="text-6xl font-black text-center mt-4 p-3">
+								<h1 className="bg-euroSecondary inline p-3   ">
+									{typeof Group == "string" && Group}
+								</h1>
+							</div>
+						</section>
+					</>
+				) : (
+					typeof Group !== "string" && (
+						<DirectSquad
+							nazioniDirect={Group}
+							state={params.slug}
 						/>
-
-						<div className="text-6xl font-black text-center mt-4 p-3">
-							<h1 className="bg-euroSecondary inline p-3   ">
-								{dataNation && dataNation.name}
-							</h1>
-						</div>
-					</section>
-				</>
-			) : (
-				// tutti gli altri casi
-				<>
-					<ButtomSim href={`/directStage/${direction}`} />
-					{/* section white */}
-
-					<section className="bg-white mx-auto w-4/5  my-3 rounded pb-3  overflow-auto">
-						{dataNation &&
-							dataNation.map(
-								(el: { nazionH: string; nazionF: string }, _: React.Key) => (
-									<div
-										className="flex justify-center text-white font-bolder py-2"
-										key={_}>
-										<TabelDirect
-											nazioneH={el.nazionH}
-											nazioneF={el.nazionF}
-											params={params.slug}
-										/>
-									</div>
-								),
-							)}
-					</section>
-				</>
-			)}
-		</main>
+					)
+				)}
+			</main>
+		</DirectProvider>
 	);
 }

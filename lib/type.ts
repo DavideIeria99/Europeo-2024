@@ -30,8 +30,8 @@ export interface paramsprops {
 }
 
 export interface DirectNazionProps {
-    nazioneH: string;
-    nazioneF: string;
+    nazioneH: string
+    nazioneF: string
     params: string
 }
 

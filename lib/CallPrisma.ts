@@ -4,6 +4,7 @@ import { prisma } from "@/prisma/prisma";
 import { Groups } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { nazionData } from "./type";
+import { passNationType } from "./context/playGirons/plays";
 
 
 //prendo i dati
@@ -76,45 +77,48 @@ export const updateData = async (nations: nazionData[]) => {
 }
 
 //aggiorno i directState
-export const updateDataDirect = async (nation: string, params: string) => {
-    switch (params) {
-        case "Final":
-            return await prisma.directState.update({
-                where: {
-                    nation
-                },
-                data: {
-                    Winner: true,
-                },
-            });
-        case "Semifinal":
-            return await prisma.directState.update({
-                where: {
-                    nation
-                },
-                data: {
-                    Final: true,
-                },
-            });
-        case "OneFour":
-            return await prisma.directState.update({
-                where: {
-                    nation
-                },
-                data: {
-                    SemiFinal: true,
-                },
-            });
-        case "OneEight":
-            return await prisma.directState.update({
-                where: {
-                    nation
-                },
-                data: {
-                    OneFour: true,
-                },
-            });
-    }
+export const updateDataDirect = async (passNation: passNationType[]) => {
+    passNation.forEach(async (el) => {
+        switch (el.state) {
+            case "Final":
+                return await prisma.directState.update({
+                    where: {
+                        nation: el.nazione,
+                    },
+                    data: {
+                        Winner: true,
+                    },
+                });
+            case "Semifinal":
+                return await prisma.directState.update({
+                    where: {
+                        nation: el.nazione,
+                    },
+                    data: {
+                        Final: true,
+                    },
+                });
+            case "OneFour":
+                return await prisma.directState.update({
+                    where: {
+                        nation: el.nazione,
+                    },
+                    data: {
+                        SemiFinal: true,
+                    },
+                });
+            case "OneEight":
+                return await prisma.directState.update({
+                    where: {
+                        nation: el.nazione,
+                    },
+                    data: {
+                        OneFour: true,
+                    },
+                });
+        }
+
+    })
 }
 
 export async function reset() {

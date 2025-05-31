@@ -1,34 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import { updateDataDirect } from "@/lib/CallPrisma";
 import { DirectNazionProps } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import FightNation from "../ui/fightNation";
+import { useDirectContext } from "@/lib/context/playGirons/plays";
 
-async function setScoresDirect(
-	nazionH: string,
-	pointH: number,
-	pointF: number,
-	nazionF: string,
-	params: string,
-) {
-	console.log("calcolo");
-	//if di controllo
-
-	if (pointH > pointF) {
-		await updateDataDirect(nazionH, params);
-	} else if (pointH < pointF) {
-		await updateDataDirect(nazionF, params);
-	} else {
-		await updateDataDirect(nazionH, params);
-	}
-
-	return `<spam>${pointH}}</spam> -<spam> ${pointF} </spam>`;
-}
-
-export default function TabelSquad({
+export default function TabelDirect({
 	nazioneH,
 	nazioneF,
 	params,
@@ -37,9 +16,16 @@ export default function TabelSquad({
 	let [pointH] = useState(Math.floor(Math.random() * (4 - 0) + 0));
 	let [pointF] = useState(Math.floor(Math.random() * (4 - 0) + 0));
 	let [load, setload] = useState(true);
+	const { addPassNation } = useDirectContext();
 
 	async function data() {
-		await setScoresDirect(nazioneH, pointH, pointF, nazioneF, params);
+		if (pointH > pointF) {
+			addPassNation(nazioneH, params);
+		} else if (pointH < pointF) {
+			addPassNation(nazioneF, params);
+		} else {
+			addPassNation(nazioneH, params);
+		}
 	}
 	if (Sim) {
 		useEffect(() => {
